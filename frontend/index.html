@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Container Port Operations</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Container Port Operations</h1>
+        <p>Cargo Tracking and Logistics Management Platform</p>
+    </header>
+
+    <nav>
+        <button onclick="showSection('dashboard')">Dashboard</button>
+        <button onclick="showSection('containers')">Containers</button>
+        <button onclick="showSection('vessels')">Vessels</button>
+        <button onclick="showSection('customs')">Customs</button>
+        <button onclick="showSection('logistics')">Logistics</button>
+    </nav>
+
+    <main>
+
+        <!-- Dashboard -->
+        <section id="dashboard">
+            <h2>Port Operations Dashboard</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Total Containers</h3>
+                    <p id="totalContainers">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Active Vessels</h3>
+                    <p id="activeVessels">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Customs Pending</h3>
+                    <p id="customsPending">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Yard Utilization</h3>
+                    <p>65%</p>
+                </div>
+
+            </div>
+
+            <h2>Port Overview</h2>
+
+            <div class="overview">
+                <p>✓ Cargo movement is being monitored.</p>
+                <p>✓ Vessel schedules are being coordinated.</p>
+                <p>✓ Customs processing is being tracked.</p>
+                <p>✓ Logistics transportation is being monitored.</p>
+            </div>
+        </section>
+
+        <!-- Containers -->
+        <section id="containers" class="hidden">
+            <h2>Container Tracking</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Container ID</th>
+                        <th>Cargo Type</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Destination</th>
+                    </tr>
+                </thead>
+
+                <tbody id="containerTable">
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Vessels -->
+        <section id="vessels" class="hidden">
+            <h2>Vessel Scheduling</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Vessel</th>
+                        <th>Arrival</th>
+                        <th>Departure</th>
+                        <th>Berth</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="vesselTable">
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Customs -->
+        <section id="customs" class="hidden">
+            <h2>Customs Processing</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Container ID</th>
+                        <th>Customs Status</th>
+                        <th>Inspection</th>
+                    </tr>
+                </thead>
+
+                <tbody id="customsTable">
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Logistics -->
+        <section id="logistics" class="hidden">
+            <h2>Logistics Tracking</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Container ID</th>
+                        <th>Truck ID</th>
+                        <th>Driver</th>
+                        <th>Destination</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="logisticsTable">
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Container Port Operations & Cargo Tracking Platform</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
