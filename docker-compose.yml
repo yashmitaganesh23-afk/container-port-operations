@@ -1,4 +1,13 @@
 services:
+ frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: port-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
 
   mysql:
     image: mysql:8.0
@@ -38,3 +47,4 @@ services:
 
 volumes:
   mysql_data:
+  
