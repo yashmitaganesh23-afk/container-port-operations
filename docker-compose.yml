@@ -1,40 +1,49 @@
 services:
-
   mysql:
     image: mysql:8.0
     container_name: port-mysql
     restart: always
-
     environment:
       MYSQL_ROOT_PASSWORD: root123
       MYSQL_DATABASE: port_operations
-
     ports:
       - "3307:3306"
-
     volumes:
       - mysql_data:/var/lib/mysql
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot123"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
 
   backend:
     build:
       context: .
       dockerfile: Dockerfile
-
     container_name: port-backend
     restart: always
-
     ports:
       - "5000:5000"
-
     environment:
       DB_HOST: mysql
       DB_USER: root
       DB_PASSWORD: root123
       DB_NAME: port_operations
-
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: port-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+ 
 volumes:
   mysql_data:
