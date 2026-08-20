@@ -54,7 +54,7 @@ async function loadContainers() {
 
     try {
 
-        const response = await fetch("/api/containers");
+        const response = await fetch("http://localhost:5000/api/containers");
 
         const containers = await response.json();
 
@@ -92,7 +92,7 @@ async function loadVessels() {
 
     try {
 
-        const response = await fetch("/api/vessels");
+        const response = await fetch("http://localhost:5000/api/vessels");
 
         const vessels = await response.json();
 
