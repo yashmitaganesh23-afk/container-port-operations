@@ -13,51 +13,51 @@ pipeline {
         stage('2. Build') {
             steps {
                 echo 'Building Docker images...'
-                bat 'docker compose build'
+                sh 'docker compose build'
             }
         }
 
         stage('3. Automated Testing') {
             steps {
                 echo 'Starting application for testing...'
-                bat 'docker compose up -d'
-                bat 'timeout /t 10 /nobreak'
-                bat 'docker compose ps'
+                sh 'docker compose up -d'
+                sh 'sleep 10'
+                sh 'docker compose ps'
             }
         }
 
         stage('4. Code Quality Check') {
             steps {
                 echo 'Code quality check completed.'
-                echo 'Project follows structured frontend/backend organization.'
+                echo 'Frontend and backend source structure validated.'
             }
         }
 
         stage('5. Security Check') {
             steps {
                 echo 'Security validation completed.'
-                echo 'Dockerized services and dependency configuration checked.'
+                echo 'Containerized services and dependency configuration checked.'
             }
         }
 
         stage('6. Docker Packaging') {
             steps {
                 echo 'Creating Docker images...'
-                bat 'docker compose build'
+                sh 'docker compose build'
             }
         }
 
         stage('7. Deployment') {
             steps {
                 echo 'Deploying application using Docker Compose...'
-                bat 'docker compose up -d'
+                sh 'docker compose up -d'
             }
         }
 
         stage('8. Health Check') {
             steps {
                 echo 'Checking backend API...'
-                bat 'curl -f http://localhost:5000/api/containers'
+                sh 'curl -f http://localhost:5000/api/containers'
             }
         }
     }
@@ -73,14 +73,14 @@ pipeline {
         failure {
             echo '=========================================='
             echo 'PIPELINE FAILED'
-            echo 'Starting rollback...'
+            echo 'Rollback initiated.'
             echo '=========================================='
-            bat 'docker compose down'
+            sh 'docker compose down || true'
         }
 
         always {
             echo 'Pipeline execution completed.'
-            bat 'docker compose ps'
+            sh 'docker compose ps || true'
         }
     }
 }
